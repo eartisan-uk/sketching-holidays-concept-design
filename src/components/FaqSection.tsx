@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { HelpCircle, ChevronDown, ChevronUp, ExternalLink, MessageCircle, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { HelpCircle, ChevronDown, ChevronUp, ExternalLink, ArrowRight, MessageCircle, X } from 'lucide-react';
 
 interface FAQItem {
   id: string;
@@ -124,13 +125,13 @@ export const FaqSection: React.FC = () => {
 
         {/* Link to more FAQs */}
         <div className="mt-10 text-center">
-          <button
-            onClick={() => setModalOpen(true)}
+          <Link
+            to="/faqs"
             className="inline-flex items-center gap-2 text-sm font-bold text-[#70826b] hover:text-[#4d5c49] underline decoration-[#70826b]/40 underline-offset-4 hover:decoration-[#70826b] transition-all"
           >
             <span>Have more questions? Read our Full FAQ & Travel Guide</span>
-            <ExternalLink className="w-4 h-4" />
-          </button>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
 
       </div>

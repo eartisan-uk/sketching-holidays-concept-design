@@ -1,17 +1,25 @@
 import React from 'react';
-import { Instagram, Facebook, Compass, Heart } from 'lucide-react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Instagram, Facebook, Compass } from 'lucide-react';
 import { ResponsibleTravelLogo } from './ResponsibleTravelLogo';
 
-interface FooterProps {
-  onSelectTab: (tabId: string) => void;
-}
+export const Footer: React.FC = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
 
-export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
-  const handleNav = (id: string) => {
-    onSelectTab(id);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const handleNav = (targetPath: string) => {
+    if (targetPath.startsWith('/#')) {
+      const sectionId = targetPath.replace('/#', '');
+      if (location.pathname === '/') {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        navigate(targetPath);
+      }
+    } else {
+      navigate(targetPath);
     }
   };
 
@@ -19,29 +27,43 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
     <footer className="bg-[#faf8f5] border-t border-[#e2ded4] pt-10 pb-8 text-[#505a4e]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
         
-        {/* Navigation Links matching screenshot */}
+        {/* Navigation Links */}
         <nav className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 text-xs sm:text-sm font-medium">
-          <button onClick={() => handleNav('hero')} className="hover:text-[#2c322b] transition-colors">
+          <Link
+            to="/"
+            onClick={() => {
+              if (location.pathname === '/') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
+            className="hover:text-[#2c322b] transition-colors"
+          >
             Home
-          </button>
-          <button onClick={() => handleNav('destinations')} className="hover:text-[#2c322b] transition-colors">
+          </Link>
+          <button
+            onClick={() => handleNav('/#destinations')}
+            className="hover:text-[#2c322b] transition-colors cursor-pointer"
+          >
             Destinations
           </button>
-          <button onClick={() => handleNav('upcoming-trips')} className="hover:text-[#2c322b] transition-colors">
+          <button
+            onClick={() => handleNav('/#upcoming-trips')}
+            className="hover:text-[#2c322b] transition-colors cursor-pointer"
+          >
             Holidays
           </button>
-          <button onClick={() => handleNav('your-host')} className="hover:text-[#2c322b] transition-colors">
+          <Link to="/your-host" className="hover:text-[#2c322b] transition-colors">
             Your Host
-          </button>
-          <button onClick={() => handleNav('blog')} className="hover:text-[#2c322b] transition-colors">
+          </Link>
+          <Link to="/blog" className="hover:text-[#2c322b] transition-colors">
             Blog
-          </button>
-          <button onClick={() => handleNav('faqs')} className="hover:text-[#2c322b] transition-colors">
+          </Link>
+          <Link to="/faqs" className="hover:text-[#2c322b] transition-colors">
             FAQs
-          </button>
-          <button onClick={() => handleNav('contact')} className="hover:text-[#2c322b] transition-colors">
+          </Link>
+          <Link to="/contact" className="hover:text-[#2c322b] transition-colors">
             Contact
-          </button>
+          </Link>
         </nav>
 
         {/* Responsible Travel Partner Seal in Footer */}
@@ -54,7 +76,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
           </div>
         </div>
 
-        {/* Social Icons matching screenshot */}
+        {/* Social Icons */}
         <div className="flex justify-center items-center gap-4">
           <a
             href="#instagram"

@@ -83,7 +83,7 @@ export const UpcomingTrips: React.FC<UpcomingTripsProps> = ({ onBookTrip }) => {
           </div>
           
           <h2 className="font-serif-title text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1e251c]">
-            Upcoming Trips
+            Upcoming Holidays
           </h2>
           <p className="mt-3 text-base text-[#525d4f] font-sans-body">
             Reserve your place on our scheduled sketchbook journeys and painting retreats.

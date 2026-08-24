@@ -1,25 +1,11 @@
-import React, { useState } from 'react';
-import { Palette, Sparkles, Send, CheckCircle2, ArrowRight, ShieldCheck, Mail } from 'lucide-react';
+import React from 'react';
+import { Sparkles, CheckCircle2, ArrowRight, Mail } from 'lucide-react';
 
 interface CtaSectionProps {
   onOpenBookModal: () => void;
 }
 
 export const CtaSection: React.FC<CtaSectionProps> = ({ onOpenBookModal }) => {
-  const [enquirySent, setEnquirySent] = useState(false);
-  const [email, setEmail] = useState('');
-
-  const handleQuickEnquiry = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      setEnquirySent(true);
-      setTimeout(() => {
-        setEnquirySent(false);
-        setEmail('');
-      }, 5000);
-    }
-  };
-
   return (
     <section id="contact" className="py-20 bg-[#73846f] text-[#faf8f5] relative overflow-hidden">
       {/* Texture overlay */}
@@ -84,36 +70,6 @@ export const CtaSection: React.FC<CtaSectionProps> = ({ onOpenBookModal }) => {
             <Mail className="w-4 h-4" />
             <span>Enquire / Ask Mary</span>
           </a>
-        </div>
-
-        {/* Quick Newsletter / Brochure request form */}
-        <div className="mt-12 pt-8 border-t border-white/20 max-w-lg mx-auto">
-          <p className="text-xs sm:text-sm text-[#e8f0e6] mb-3">
-            Want our 2026/2027 printed travel brochure & materials checklist?
-          </p>
-          
-          {enquirySent ? (
-            <div className="p-3 bg-white/20 border border-white/40 rounded text-sm text-white font-medium animate-fade-in">
-              ✓ Thank you! We’ve sent the digital brochure and checklist to your inbox.
-            </div>
-          ) : (
-            <form onSubmit={handleQuickEnquiry} className="flex gap-2">
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email address..."
-                className="flex-1 px-4 py-2.5 rounded bg-white/15 border border-white/30 text-white placeholder-white/70 text-xs focus:outline-none focus:bg-white/25 transition-colors"
-              />
-              <button
-                type="submit"
-                className="px-4 py-2.5 rounded bg-white text-[#2c3829] text-xs font-bold uppercase tracking-wider hover:bg-[#f2ede4] transition-colors"
-              >
-                Send Brochure
-              </button>
-            </form>
-          )}
         </div>
 
       </div>

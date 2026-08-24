@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Palette, Sparkles, Heart, Award, CheckCircle2, ArrowRight, X, Mail } from 'lucide-react';
 
 interface YourHostProps {
@@ -73,11 +74,11 @@ export const YourHost: React.FC<YourHostProps> = ({ onOpenBookModal }) => {
               </div>
 
               <p className="text-sm sm:text-base text-[#3d463b] font-sans-body leading-relaxed">
-                Mary King is an acclaimed professional artist, tutor, and experienced traveler who has spent over twenty years guiding painters and sketchers across dramatic landscapes from the Scottish Highlands and Tuscan hills to the vibrant medinas of Morocco and tropical shores of Sri Lanka.
+                I am Mary King, and with Vistas sketching and painting holidays I get to share some of my greatest passions: art and creativity, natural beauty, travel and exploring.
               </p>
 
               <p className="text-sm sm:text-base text-[#4a5448] font-sans-body leading-relaxed">
-                Renowned for her gentle, supportive teaching style, Mary excels at putting complete beginners at ease while offering insightful composition and color techniques that challenge experienced painters. With small group sizes, every guest receives generous one-to-one attention in an encouraging, joyful atmosphere.
+                For many years I ran my own gallery, Picture Shack, in remote NW Scotland, before two years living in Morocco — where the idea for Vistas first took shape — and time spent teaching watercolours in the Italian Dolomites.
               </p>
 
               {/* Highlights pills */}
@@ -102,17 +103,17 @@ export const YourHost: React.FC<YourHostProps> = ({ onOpenBookModal }) => {
 
               {/* Action Buttons */}
               <div className="pt-4 flex flex-wrap items-center gap-4 border-t border-[#f0ebe0]">
-                <button
-                  onClick={() => setModalOpen(true)}
+                <Link
+                  to="/your-host"
                   className="inline-flex items-center gap-2 text-sm font-bold text-[#70826b] hover:text-[#4d5c49] underline decoration-[#70826b]/40 underline-offset-4 hover:decoration-[#70826b] transition-all"
                 >
                   <span>Read Mary’s Full Bio & Teaching Philosophy</span>
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </Link>
 
                 <button
                   onClick={onOpenBookModal}
-                  className="ml-auto px-4 py-2 text-xs font-bold uppercase tracking-wider text-white bg-[#70826b] hover:bg-[#5a6a56] rounded-md shadow-xs transition-all active:scale-95"
+                  className="ml-auto px-4 py-2 text-xs font-bold uppercase tracking-wider text-white bg-[#70826b] hover:bg-[#5a6a56] rounded-md shadow-xs transition-all active:scale-95 cursor-pointer"
                 >
                   Join a Trip with Mary
                 </button>

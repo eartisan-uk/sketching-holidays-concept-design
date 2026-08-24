@@ -4,21 +4,20 @@
  */
 
 import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Header } from './components/Header';
-import { Hero } from './components/Hero';
-import { DestinationsGrid } from './components/DestinationsGrid';
-import { UpcomingTrips } from './components/UpcomingTrips';
-import { YourHost } from './components/YourHost';
-import { TestimonialsSection } from './components/TestimonialsSection';
-import { BlogSection } from './components/BlogSection';
-import { FaqSection } from './components/FaqSection';
-import { CtaSection } from './components/CtaSection';
 import { Footer } from './components/Footer';
+import { ScrollToTop } from './components/ScrollToTop';
+
+import { HomePage } from './pages/HomePage';
+import { YourHostPage } from './pages/YourHostPage';
+import { BlogPage } from './pages/BlogPage';
+import { BlogPostPage } from './pages/BlogPostPage';
+import { FaqPage } from './pages/FaqPage';
+import { ContactPage } from './pages/ContactPage';
 
 import { DestinationModal } from './components/DestinationModal';
 import { BookingModal } from './components/BookingModal';
-
-import { DESTINATIONS, TESTIMONIALS } from './data/holidaysData';
 import { Destination } from './types';
 
 export default function App() {
@@ -27,8 +26,6 @@ export default function App() {
   const [bookingInitialDestId, setBookingInitialDestId] = useState<string | undefined>(undefined);
   const [bookingInitialDateId, setBookingInitialDateId] = useState<string | undefined>(undefined);
 
-  const [activeTab, setActiveTab] = useState<string>('destinations');
-
   const handleOpenBookModal = (destinationId?: string, dateId?: string) => {
     setBookingInitialDestId(destinationId);
     setBookingInitialDateId(dateId);
@@ -36,78 +33,87 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#faf8f5] text-[#2c322b] font-sans-body flex flex-col paper-texture selection:bg-[#70826b]/20 selection:text-[#1a2119]">
-      
-      {/* Sticky Top Header */}
-      <Header
-        onOpenBookModal={handleOpenBookModal}
-        onSelectTab={(tabId) => setActiveTab(tabId)}
-        activeTab={activeTab}
-      />
+    <BrowserRouter>
+      <ScrollToTop />
+      <div className="min-h-screen bg-[#faf8f5] text-[#2c322b] font-sans-body flex flex-col paper-texture selection:bg-[#70826b]/20 selection:text-[#1a2119]">
+        
+        {/* Sticky Top Header */}
+        <Header onOpenBookModal={handleOpenBookModal} />
 
-      {/* Main Page Sections */}
-      <main className="flex-1">
-        {/* Hero Section */}
-        <Hero
-          onExploreClick={() => {
-            const el = document.getElementById('destinations');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }}
-          onOpenBookModal={() => handleOpenBookModal()}
-        />
+        {/* Dynamic Route Content */}
+        <main className="flex-1">
+          <Routes>
+            {/* Home Page (kept exact as requested) */}
+            <Route
+              path="/"
+              element={
+                <HomePage
+                  onSelectDestination={(dest) => setSelectedDestination(dest)}
+                  onOpenBookModal={handleOpenBookModal}
+                />
+              }
+            />
 
-        {/* Featured Destinations Grid */}
-        <DestinationsGrid
-          destinations={DESTINATIONS}
-          onSelectDestination={(dest) => setSelectedDestination(dest)}
-          onBookDestination={(destId) => handleOpenBookModal(destId)}
-        />
+            {/* Dedicated Your Host Page */}
+            <Route
+              path="/your-host"
+              element={
+                <YourHostPage
+                  onOpenBookModal={handleOpenBookModal}
+                />
+              }
+            />
 
-        {/* Upcoming Trips Table Section */}
-        <UpcomingTrips
-          onBookTrip={(destId) => handleOpenBookModal(destId)}
-        />
+            {/* Dedicated Blog List Page */}
+            <Route
+              path="/blog"
+              element={<BlogPage />}
+            />
 
-        {/* Your Host Section - Mary King */}
-        <YourHost
-          onOpenBookModal={() => handleOpenBookModal()}
-        />
+            {/* Dedicated Individual Blog Article Page */}
+            <Route
+              path="/blog/:id"
+              element={<BlogPostPage />}
+            />
 
-        {/* Testimonials Section matching green banner in screenshot */}
-        <TestimonialsSection testimonials={TESTIMONIALS} />
+            {/* Dedicated FAQs Page */}
+            <Route
+              path="/faqs"
+              element={<FaqPage />}
+            />
 
-        {/* From the Blog Section */}
-        <BlogSection />
+            {/* Dedicated Contact & Enquiry Page */}
+            <Route
+              path="/contact"
+              element={<ContactPage />}
+            />
 
-        {/* FAQs Section */}
-        <FaqSection />
+            {/* Fallback to Home */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
 
-        {/* Call To Action Section */}
-        <CtaSection
-          onOpenBookModal={() => handleOpenBookModal()}
-        />
-      </main>
+        {/* Global Footer */}
+        <Footer />
 
-      {/* Footer */}
-      <Footer onSelectTab={(tabId) => setActiveTab(tabId)} />
+        {/* Modals */}
+        {selectedDestination && (
+          <DestinationModal
+            destination={selectedDestination}
+            onClose={() => setSelectedDestination(null)}
+            onBook={(destId, dateId) => handleOpenBookModal(destId, dateId)}
+          />
+        )}
 
-      {/* Modals & Drawers */}
-      {selectedDestination && (
-        <DestinationModal
-          destination={selectedDestination}
-          onClose={() => setSelectedDestination(null)}
-          onBook={(destId, dateId) => handleOpenBookModal(destId, dateId)}
-        />
-      )}
+        {bookingModalOpen && (
+          <BookingModal
+            initialDestinationId={bookingInitialDestId}
+            initialDateId={bookingInitialDateId}
+            onClose={() => setBookingModalOpen(false)}
+          />
+        )}
 
-      {bookingModalOpen && (
-        <BookingModal
-          initialDestinationId={bookingInitialDestId}
-          initialDateId={bookingInitialDateId}
-          onClose={() => setBookingModalOpen(false)}
-        />
-      )}
-
-    </div>
+      </div>
+    </BrowserRouter>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Calendar, ArrowRight, BookOpen, Feather, X } from 'lucide-react';
 
 interface BlogPost {
@@ -135,6 +136,17 @@ export const BlogSection: React.FC = () => {
               </div>
             </article>
           ))}
+        </div>
+
+        {/* View All Blog Stories Button */}
+        <div className="mt-12 text-center">
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-[#323d30] rounded-md text-xs font-bold uppercase tracking-wider text-[#1e251c] hover:bg-[#70826b] hover:text-white hover:border-[#70826b] transition-all shadow-xs"
+          >
+            <span>Explore All Blog Articles & Stories</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
 
       </div>
