@@ -46,6 +46,9 @@ export const Footer: React.FC = () => {
           >
             Destinations
           </button>
+          <Link to="/painting-holidays-scotland" className="hover:text-[#2c322b] transition-colors">
+            Scotland
+          </Link>
           <button
             onClick={() => handleNav('/#upcoming-trips')}
             className="hover:text-[#2c322b] transition-colors cursor-pointer"

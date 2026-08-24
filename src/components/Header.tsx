@@ -24,6 +24,7 @@ export const Header: React.FC<HeaderProps> = ({
 
   const navItems = [
     { id: 'destinations', label: 'Destinations', path: '/#destinations' },
+    { id: 'scotland', label: 'Scotland', path: '/painting-holidays-scotland' },
     { id: 'holidays', label: 'Holidays', path: '/#upcoming-trips' },
     { id: 'your-host', label: 'Your Host', path: '/your-host' },
     { id: 'blog', label: 'Blog', path: '/blog' },
@@ -50,6 +51,7 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   const isItemActive = (item: typeof navItems[0]) => {
+    if (item.path === '/painting-holidays-scotland' && (location.pathname.startsWith('/painting-holidays-scotland') || location.pathname.startsWith('/scotland'))) return true;
     if (item.path === '/your-host' && location.pathname.startsWith('/your-host')) return true;
     if (item.path === '/blog' && location.pathname.startsWith('/blog')) return true;
     if (item.path === '/faqs' && location.pathname.startsWith('/faqs')) return true;

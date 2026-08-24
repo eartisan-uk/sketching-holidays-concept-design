@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Destination } from '../types';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
@@ -13,6 +14,7 @@ export const DestinationsGrid: React.FC<DestinationsGridProps> = ({
   onSelectDestination,
   onBookDestination,
 }) => {
+  const navigate = useNavigate();
   const [sketchViewMode, setSketchViewMode] = useState<Record<string, 'photo' | 'sketch'>>({});
 
   const toggleImageMode = (id: string, e: React.MouseEvent) => {
@@ -21,6 +23,14 @@ export const DestinationsGrid: React.FC<DestinationsGridProps> = ({
       ...prev,
       [id]: prev[id] === 'sketch' ? 'photo' : 'sketch',
     }));
+  };
+
+  const handleCardClick = (dest: Destination) => {
+    if (dest.id === 'scotland') {
+      navigate('/painting-holidays-scotland');
+    } else {
+      onSelectDestination(dest);
+    }
   };
 
   return (
@@ -46,7 +56,7 @@ export const DestinationsGrid: React.FC<DestinationsGridProps> = ({
               <div
                 key={dest.id}
                 className="group flex flex-col cursor-pointer relative"
-                onClick={() => onSelectDestination(dest)}
+                onClick={() => handleCardClick(dest)}
               >
                 {/* Hand-Drawn Watercolor Splash Behind Polaroid Card */}
                 <div className="absolute -inset-2 bg-[#70826b]/10 rounded-2xl blur-md pointer-events-none group-hover:bg-[#70826b]/20 transition-colors" />

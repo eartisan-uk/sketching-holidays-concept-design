@@ -91,13 +91,16 @@ export const DESTINATIONS: Destination[] = [
     imageUrl: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&q=80&w=800',
     watercolorSketchUrl: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&q=80&w=800',
     durationDays: 7,
-    priceGBP: 1450,
+    priceGBP: 750,
     skillLevel: 'All Levels Welcome',
-    mediums: ['Watercolor', 'Pen & Wash', 'Pastels'],
+    mediums: ['Watercolor', 'Pen & Wash', 'Pastels', 'Drawing Materials'],
     tutorId: 'ennia-vata',
     upcomingDates: [
-      { id: 'sc-1', startDate: 'May 12, 2026', endDate: 'May 19, 2026', spotsLeft: 3 },
-      { id: 'sc-2', startDate: 'Sep 04, 2026', endDate: 'Sep 11, 2026', spotsLeft: 5 }
+      { id: 'ww-1', startDate: 'May 24, 2026', endDate: 'May 30, 2026', spotsLeft: 2 },
+      { id: 'bb-1', startDate: 'Jun 14, 2026', endDate: 'Jun 18, 2026', spotsLeft: 3 },
+      { id: 'wc-1', startDate: 'Jul 04, 2026', endDate: 'Jul 11, 2026', spotsLeft: 2 },
+      { id: 'bh-1', startDate: 'Aug 10, 2026', endDate: 'Aug 20, 2026', spotsLeft: 4 },
+      { id: 'ww-3', startDate: 'Sep 20, 2026', endDate: 'Sep 26, 2026', spotsLeft: 4 }
     ],
     highlights: [
       'Plein air sketching along Loch Maree and Assynt peaks',

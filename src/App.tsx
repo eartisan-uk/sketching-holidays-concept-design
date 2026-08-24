@@ -15,6 +15,7 @@ import { BlogPage } from './pages/BlogPage';
 import { BlogPostPage } from './pages/BlogPostPage';
 import { FaqPage } from './pages/FaqPage';
 import { ContactPage } from './pages/ContactPage';
+import { ScotlandPage } from './pages/ScotlandPage';
 
 import { DestinationModal } from './components/DestinationModal';
 import { BookingModal } from './components/BookingModal';
@@ -86,6 +87,20 @@ export default function App() {
             <Route
               path="/contact"
               element={<ContactPage />}
+            />
+
+            {/* Dedicated Scotland Destination Page */}
+            <Route
+              path="/painting-holidays-scotland"
+              element={<ScotlandPage onOpenBookModal={handleOpenBookModal} />}
+            />
+            <Route
+              path="/painting-holidays-scotland/"
+              element={<ScotlandPage onOpenBookModal={handleOpenBookModal} />}
+            />
+            <Route
+              path="/scotland"
+              element={<ScotlandPage onOpenBookModal={handleOpenBookModal} />}
             />
 
             {/* Fallback to Home */}
