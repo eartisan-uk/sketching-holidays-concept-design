@@ -102,7 +102,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 </div>
                 <div className="flex justify-between border-b pb-1">
                   <span className="font-semibold text-[#6e786b]">Dates:</span>
-                  <span>{selectedDateObj?.startDate} — {selectedDateObj?.endDate}</span>
+                  <span>{selectedDateObj?.startDate} - {selectedDateObj?.endDate}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="font-semibold text-[#6e786b]">Guest Name:</span>
@@ -166,7 +166,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                           : 'bg-white text-[#2c322b] border-[#c8c2b4] hover:bg-[#f2efe8]'
                       }`}
                     >
-                      <span className="block">{d.startDate} — {d.endDate}</span>
+                      <span className="block">{d.startDate} - {d.endDate}</span>
                       <span className="text-[10px] opacity-80">{d.spotsLeft} spots available</span>
                     </button>
                   ))}

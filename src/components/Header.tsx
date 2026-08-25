@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Palette, Menu, X } from 'lucide-react';
+import { Palette, Menu, X, ChevronDown, Compass, MapPin, Sparkles } from 'lucide-react';
 
 interface HeaderProps {
   onOpenBookModal: (destinationId?: string) => void;
@@ -11,6 +11,9 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [destDropdownOpen, setDestDropdownOpen] = useState(false);
+  const [mobileDestOpen, setMobileDestOpen] = useState(true);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -22,37 +25,60 @@ export const Header: React.FC<HeaderProps> = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setDestDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Close dropdown on route change
+  useEffect(() => {
+    setDestDropdownOpen(false);
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  const isDestinationsActive = 
+    location.pathname.startsWith('/painting-holidays-scotland') ||
+    location.pathname.startsWith('/scotland') ||
+    location.pathname.startsWith('/painting-holidays-sri-lanka') ||
+    location.pathname.startsWith('/sri-lanka');
+
   const navItems = [
-    { id: 'destinations', label: 'Destinations', path: '/#destinations' },
-    { id: 'scotland', label: 'Scotland', path: '/painting-holidays-scotland' },
     { id: 'holidays', label: 'Holidays', path: '/#upcoming-trips' },
     { id: 'your-host', label: 'Your Host', path: '/your-host' },
+    { id: 'testimonials', label: 'Testimonials', path: '/testimonials' },
     { id: 'blog', label: 'Blog', path: '/blog' },
     { id: 'faqs', label: 'FAQs', path: '/faqs' },
     { id: 'contact', label: 'Contact', path: '/contact' },
   ];
 
-  const handleNavClick = (item: typeof navItems[0]) => {
+  const handleNavClick = (path: string) => {
     setMobileMenuOpen(false);
+    setDestDropdownOpen(false);
 
-    if (item.path.startsWith('/#')) {
-      const sectionId = item.path.replace('/#', '');
+    if (path.startsWith('/#')) {
+      const sectionId = path.replace('/#', '');
       if (location.pathname === '/') {
         const element = document.getElementById(sectionId);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
         }
       } else {
-        navigate(item.path);
+        navigate(path);
       }
     } else {
-      navigate(item.path);
+      navigate(path);
     }
   };
 
   const isItemActive = (item: typeof navItems[0]) => {
-    if (item.path === '/painting-holidays-scotland' && (location.pathname.startsWith('/painting-holidays-scotland') || location.pathname.startsWith('/scotland'))) return true;
     if (item.path === '/your-host' && location.pathname.startsWith('/your-host')) return true;
+    if (item.path === '/testimonials' && location.pathname.startsWith('/testimonials')) return true;
     if (item.path === '/blog' && location.pathname.startsWith('/blog')) return true;
     if (item.path === '/faqs' && location.pathname.startsWith('/faqs')) return true;
     if (item.path === '/contact' && location.pathname.startsWith('/contact')) return true;
@@ -93,13 +119,95 @@ export const Header: React.FC<HeaderProps> = ({
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-7">
+        <nav className="hidden md:flex items-center gap-6 lg:gap-7">
+          
+          {/* Destinations Dropdown */}
+          <div 
+            ref={dropdownRef}
+            className="relative"
+            onMouseEnter={() => setDestDropdownOpen(true)}
+            onMouseLeave={() => setDestDropdownOpen(false)}
+          >
+            <button
+              onClick={() => setDestDropdownOpen(!destDropdownOpen)}
+              className={`text-sm font-medium transition-colors hover:text-[#42503d] relative py-1 cursor-pointer flex items-center gap-1 ${
+                isDestinationsActive ? 'text-[#2c322b] font-semibold' : 'text-[#5a6258]'
+              }`}
+            >
+              <span>Destinations</span>
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${destDropdownOpen ? 'rotate-180' : ''}`} />
+              {isDestinationsActive && (
+                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#70826b] rounded-full" />
+              )}
+            </button>
+
+            {/* Dropdown Menu */}
+            {destDropdownOpen && (
+              <div className="absolute top-full left-0 mt-1 w-64 bg-white border-2 border-[#323d30] rounded-lg shadow-lg py-2 z-50 animate-fade-in divide-y divide-[#eee7dc]">
+                <div className="px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-[#70826b]">
+                  Featured Guides
+                </div>
+                
+                <div className="py-1">
+                  {/* Scotland Sub-page */}
+                  <Link
+                    to="/painting-holidays-scotland"
+                    onClick={() => setDestDropdownOpen(false)}
+                    className="px-4 py-2.5 hover:bg-[#f4f7f2] flex items-center justify-between group transition-colors"
+                  >
+                    <div>
+                      <div className="font-serif-title font-bold text-sm text-[#1e251c] group-hover:text-[#70826b]">
+                        Scotland
+                      </div>
+                      <div className="text-[11px] text-[#6e786b]">
+                        Wilderness &amp; sea lochs (5 trips)
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#eef2ec] text-[#3d4a3a]">
+                      From £750
+                    </span>
+                  </Link>
+
+                  {/* Sri Lanka Sub-page */}
+                  <Link
+                    to="/painting-holidays-sri-lanka"
+                    onClick={() => setDestDropdownOpen(false)}
+                    className="px-4 py-2.5 hover:bg-[#f4f7f2] flex items-center justify-between group transition-colors"
+                  >
+                    <div>
+                      <div className="font-serif-title font-bold text-sm text-[#1e251c] group-hover:text-[#70826b]">
+                        Sri Lanka
+                      </div>
+                      <div className="text-[11px] text-[#6e786b]">
+                        Emerald island &amp; tea country (3 trips)
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#eef2ec] text-[#3d4a3a]">
+                      From £1,280
+                    </span>
+                  </Link>
+                </div>
+
+                <div className="py-1">
+                  <button
+                    onClick={() => handleNavClick('/#destinations')}
+                    className="w-full text-left px-4 py-2 hover:bg-[#f4f7f2] text-xs font-semibold text-[#5a6556] flex items-center gap-1.5 cursor-pointer"
+                  >
+                    <Compass className="w-3.5 h-3.5 text-[#70826b]" />
+                    <span>View All Destinations Overview →</span>
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Standard Navigation Items */}
           {navItems.map((item) => {
             const active = isItemActive(item);
             return (
               <button
                 key={item.id}
-                onClick={() => handleNavClick(item)}
+                onClick={() => handleNavClick(item.path)}
                 className={`text-sm font-medium transition-colors hover:text-[#42503d] relative py-1 cursor-pointer ${
                   active ? 'text-[#2c322b] font-semibold' : 'text-[#5a6258]'
                 }`}
@@ -135,16 +243,55 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#faf8f5] border-b border-[#e2ded4] px-4 pt-2 pb-6 space-y-3 animate-fade-in">
+        <div className="md:hidden bg-[#faf8f5] border-b border-[#e2ded4] px-4 pt-2 pb-6 space-y-2 animate-fade-in">
+          
+          {/* Mobile Destinations Submenu */}
+          <div className="border-b border-[#e8e2d5] pb-2">
+            <button
+              onClick={() => setMobileDestOpen(!mobileDestOpen)}
+              className="w-full flex items-center justify-between py-2 text-base font-semibold text-[#2c322b]"
+            >
+              <span>Destinations</span>
+              <ChevronDown className={`w-4 h-4 transition-transform ${mobileDestOpen ? 'rotate-180' : ''}`} />
+            </button>
+
+            {mobileDestOpen && (
+              <div className="pl-3 space-y-1.5 pt-1 pb-2">
+                <Link
+                  to="/painting-holidays-scotland"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block py-1.5 px-2 rounded hover:bg-[#eef2ec] text-sm text-[#2c322b] font-medium"
+                >
+                  🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland (5 trips)
+                </Link>
+                <Link
+                  to="/painting-holidays-sri-lanka"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block py-1.5 px-2 rounded hover:bg-[#eef2ec] text-sm text-[#2c322b] font-medium"
+                >
+                  🇱🇰 Sri Lanka (3 trips)
+                </Link>
+                <button
+                  onClick={() => handleNavClick('/#destinations')}
+                  className="block w-full text-left py-1.5 px-2 text-xs text-[#70826b] font-semibold"
+                >
+                  All Destinations Overview →
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Standard Mobile Nav Items */}
           {navItems.map((item) => (
             <button
               key={item.id}
-              onClick={() => handleNavClick(item)}
+              onClick={() => handleNavClick(item.path)}
               className="block w-full text-left py-2 text-base font-medium text-[#2c322b] hover:text-[#70826b] cursor-pointer"
             >
               {item.label}
             </button>
           ))}
+
           <div className="pt-2 flex flex-col gap-2">
             <button
               onClick={() => {

@@ -22,7 +22,7 @@ const BLOG_POSTS: BlogPost[] = [
     summary: 'Why traveling with a sketchbook transforms your perception of places, light, and memories in ways a camera lens never can.',
     content: `Traveling with a sketchbook opens up a different dimension of observation. When you sit down with a pencil or watercolor set in a bustling marketplace or along a quiet seaside cliff, time slows down. You notice the angle of sunlight filtering through arched alleyways, the texture of weathered stone, and the subtle shifts in cloud formations. 
 
-    Whether you consider yourself an experienced painter or a curious novice, packing a compact sketchbook and a small pan set of watercolours is the single best decision you can make for your travels. You won't just record a scene — you will carry the memory of the breeze, the sound of waves, and the aroma of morning coffee in every brushstroke.`,
+    Whether you consider yourself an experienced painter or a curious novice, packing a compact sketchbook and a small pan set of watercolours is the single best decision you can make for your travels. You won't just record a scene - you will carry the memory of the breeze, the sound of waves, and the aroma of morning coffee in every brushstroke.`,
     imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800',
     readTime: '4 min read'
   },

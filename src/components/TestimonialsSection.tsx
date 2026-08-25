@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Testimonial } from '../types';
 import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 
@@ -48,7 +49,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ testim
 
             <div className="pt-2">
               <p className="font-sans-body text-base font-semibold tracking-wide text-[#e8f0e6]">
-                — {current.author}, {current.location} <span className="font-normal opacity-85">({current.tripName})</span>
+                - {current.author}, {current.location} <span className="font-normal opacity-85">({current.tripName})</span>
               </p>
             </div>
           </div>
@@ -88,16 +89,13 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ testim
 
         {/* Link to /testimonials/ */}
         <div className="mt-10 pt-6 border-t border-white/20 inline-block">
-          <a
-            href="/testimonials/"
-            onClick={(e) => {
-              // Smooth feedback if routing physically
-            }}
+          <Link
+            to="/testimonials"
             className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-[#e8f0e6] underline decoration-white/40 underline-offset-4 hover:decoration-white transition-all"
           >
-            <span>Read all guest reviews at /testimonials/</span>
+            <span>Read all guest reviews on Testimonials</span>
             <ExternalLink className="w-3.5 h-3.5 opacity-80" />
-          </a>
+          </Link>
         </div>
 
       </div>

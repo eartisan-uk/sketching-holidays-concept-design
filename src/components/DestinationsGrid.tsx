@@ -28,6 +28,8 @@ export const DestinationsGrid: React.FC<DestinationsGridProps> = ({
   const handleCardClick = (dest: Destination) => {
     if (dest.id === 'scotland') {
       navigate('/painting-holidays-scotland');
+    } else if (dest.id === 'sri-lanka') {
+      navigate('/painting-holidays-sri-lanka');
     } else {
       onSelectDestination(dest);
     }

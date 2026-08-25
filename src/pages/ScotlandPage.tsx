@@ -826,7 +826,7 @@ export const ScotlandPage: React.FC<ScotlandPageProps> = ({ onOpenBookModal }) =
               </p>
             </div>
             <div className="mt-4 pt-3 border-t border-[#f0ebe0] flex items-center justify-between text-xs">
-              <span className="font-bold text-[#1e251c]">— Clare</span>
+              <span className="font-bold text-[#1e251c]">- Clare</span>
               <span className="text-[#6e786b]">Scotland</span>
             </div>
           </div>
@@ -840,7 +840,7 @@ export const ScotlandPage: React.FC<ScotlandPageProps> = ({ onOpenBookModal }) =
               </p>
             </div>
             <div className="mt-4 pt-3 border-t border-[#f0ebe0] flex items-center justify-between text-xs">
-              <span className="font-bold text-[#1e251c]">— Caroline</span>
+              <span className="font-bold text-[#1e251c]">- Caroline</span>
               <span className="text-[#6e786b]">Scotland</span>
             </div>
           </div>

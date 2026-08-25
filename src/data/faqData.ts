@@ -18,7 +18,7 @@ export const FAQS_DATA: FaqItem[] = [
     id: 'faq-1',
     category: 'General & Experience',
     question: 'Do I need prior drawing or painting experience to join?',
-    answer: 'Not at all! Our sketching holidays are warmly designed for all ability levels — from complete beginners picking up a brush or pencil for the very first time, to experienced painters seeking fresh inspiration and scenic locations. Mary tailors her daily advice and demonstrations to each guest’s individual skill and pace in a relaxed, non-competitive setting.'
+    answer: 'Not at all! Our sketching holidays are warmly designed for all ability levels - from complete beginners picking up a brush or pencil for the very first time, to experienced painters seeking fresh inspiration and scenic locations. Mary tailors her daily advice and demonstrations to each guest’s individual skill and pace in a relaxed, non-competitive setting.'
   },
   {
     id: 'faq-2',

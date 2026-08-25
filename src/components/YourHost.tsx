@@ -78,7 +78,7 @@ export const YourHost: React.FC<YourHostProps> = ({ onOpenBookModal }) => {
               </p>
 
               <p className="text-sm sm:text-base text-[#4a5448] font-sans-body leading-relaxed">
-                For many years I ran my own gallery, Picture Shack, in remote NW Scotland, before two years living in Morocco — where the idea for Vistas first took shape — and time spent teaching watercolours in the Italian Dolomites.
+                For many years I ran my own gallery, Picture Shack, in remote NW Scotland, before two years living in Morocco, where the idea for Vistas first took shape, and time spent teaching watercolours in the Italian Dolomites.
               </p>
 
               {/* Highlights pills */}
@@ -183,7 +183,7 @@ export const YourHost: React.FC<YourHostProps> = ({ onOpenBookModal }) => {
                 What Students Say
               </h4>
               <p className="italic text-[#5a6655] bg-[#f4f7f2] p-3.5 rounded border-l-3 border-[#70826b]">
-                "Mary was fantastic! She is a very gifted teacher, knowing how to encourage her students... a perfect combination of expert advice and diplomacy." — Corrine, Australia
+                "Mary was fantastic! She is a very gifted teacher, knowing how to encourage her students... a perfect combination of expert advice and diplomacy." - Corrine, Australia
               </p>
             </div>
 

@@ -16,6 +16,8 @@ import { BlogPostPage } from './pages/BlogPostPage';
 import { FaqPage } from './pages/FaqPage';
 import { ContactPage } from './pages/ContactPage';
 import { ScotlandPage } from './pages/ScotlandPage';
+import { SriLankaPage } from './pages/SriLankaPage';
+import { TestimonialsPage } from './pages/TestimonialsPage';
 
 import { DestinationModal } from './components/DestinationModal';
 import { BookingModal } from './components/BookingModal';
@@ -61,6 +63,16 @@ export default function App() {
               element={
                 <YourHostPage
                   onOpenBookModal={handleOpenBookModal}
+                  onSelectDestination={(dest) => setSelectedDestination(dest)}
+                />
+              }
+            />
+            <Route
+              path="/your-host/"
+              element={
+                <YourHostPage
+                  onOpenBookModal={handleOpenBookModal}
+                  onSelectDestination={(dest) => setSelectedDestination(dest)}
                 />
               }
             />
@@ -88,6 +100,18 @@ export default function App() {
               path="/contact"
               element={<ContactPage />}
             />
+            <Route
+              path="/contact/"
+              element={<ContactPage />}
+            />
+            <Route
+              path="/contact-me"
+              element={<ContactPage />}
+            />
+            <Route
+              path="/contact-me/"
+              element={<ContactPage />}
+            />
 
             {/* Dedicated Scotland Destination Page */}
             <Route
@@ -101,6 +125,59 @@ export default function App() {
             <Route
               path="/scotland"
               element={<ScotlandPage onOpenBookModal={handleOpenBookModal} />}
+            />
+
+            {/* Dedicated Sri Lanka Destination Page */}
+            <Route
+              path="/painting-holidays-sri-lanka"
+              element={<SriLankaPage onOpenBookModal={handleOpenBookModal} />}
+            />
+            <Route
+              path="/painting-holidays-sri-lanka/"
+              element={<SriLankaPage onOpenBookModal={handleOpenBookModal} />}
+            />
+            <Route
+              path="/sri-lanka"
+              element={<SriLankaPage onOpenBookModal={handleOpenBookModal} />}
+            />
+
+            {/* Vistas / Departures aliases */}
+            <Route
+              path="/vistas"
+              element={<Navigate to="/#upcoming-trips" replace />}
+            />
+            <Route
+              path="/vistas/"
+              element={<Navigate to="/#upcoming-trips" replace />}
+            />
+
+            {/* How to Book & Testimonials aliases */}
+            <Route
+              path="/how-to-book"
+              element={<Navigate to="/#how-it-works" replace />}
+            />
+            <Route
+              path="/how-to-book/"
+              element={<Navigate to="/#how-it-works" replace />}
+            />
+            {/* Dedicated Testimonials Page */}
+            <Route
+              path="/testimonials"
+              element={
+                <TestimonialsPage
+                  onOpenBookModal={handleOpenBookModal}
+                  onSelectDestination={(dest) => setSelectedDestination(dest)}
+                />
+              }
+            />
+            <Route
+              path="/testimonials/"
+              element={
+                <TestimonialsPage
+                  onOpenBookModal={handleOpenBookModal}
+                  onSelectDestination={(dest) => setSelectedDestination(dest)}
+                />
+              }
             />
 
             {/* Fallback to Home */}

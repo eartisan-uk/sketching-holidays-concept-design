@@ -209,7 +209,7 @@ export const DestinationModal: React.FC<DestinationModalProps> = ({
                         : 'bg-white text-[#2c322b] border-[#c8c2b4] hover:bg-[#f2efe8]'
                     }`}
                   >
-                    <span>{date.startDate} — {date.endDate}</span>
+                    <span>{date.startDate} - {date.endDate}</span>
                     <span className="ml-1 opacity-75 text-[10px]">({date.spotsLeft} left)</span>
                   </button>
                 ))}
