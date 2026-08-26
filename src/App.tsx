@@ -17,11 +17,17 @@ import { FaqPage } from './pages/FaqPage';
 import { ContactPage } from './pages/ContactPage';
 import { ScotlandPage } from './pages/ScotlandPage';
 import { SriLankaPage } from './pages/SriLankaPage';
+import { MoroccoPage } from './pages/MoroccoPage';
+import { CanaryIslandsPage } from './pages/CanaryIslandsPage';
+import { GreecePage } from './pages/GreecePage';
+import { ItalyPage } from './pages/ItalyPage';
+import { CalendarPage } from './pages/CalendarPage';
 import { TestimonialsPage } from './pages/TestimonialsPage';
 
 import { DestinationModal } from './components/DestinationModal';
 import { BookingModal } from './components/BookingModal';
 import { Destination } from './types';
+import { DESTINATIONS } from './data/holidaysData';
 
 export default function App() {
   const [selectedDestination, setSelectedDestination] = useState<Destination | null>(null);
@@ -139,6 +145,96 @@ export default function App() {
             <Route
               path="/sri-lanka"
               element={<SriLankaPage onOpenBookModal={handleOpenBookModal} />}
+            />
+
+            {/* Dedicated Morocco Destination Page */}
+            <Route
+              path="/painting-holidays-morocco"
+              element={<MoroccoPage onOpenBookModal={handleOpenBookModal} />}
+            />
+            <Route
+              path="/painting-holidays-morocco/"
+              element={<MoroccoPage onOpenBookModal={handleOpenBookModal} />}
+            />
+            <Route
+              path="/morocco"
+              element={<MoroccoPage onOpenBookModal={handleOpenBookModal} />}
+            />
+
+            {/* Dedicated Canary Islands Destination Page */}
+            <Route
+              path="/painting-holidays-canary-islands"
+              element={<CanaryIslandsPage onOpenBookModal={handleOpenBookModal} />}
+            />
+            <Route
+              path="/painting-holidays-canary-islands/"
+              element={<CanaryIslandsPage onOpenBookModal={handleOpenBookModal} />}
+            />
+            <Route
+              path="/canary-islands"
+              element={<CanaryIslandsPage onOpenBookModal={handleOpenBookModal} />}
+            />
+            <Route
+              path="/la-gomera"
+              element={<CanaryIslandsPage onOpenBookModal={handleOpenBookModal} />}
+            />
+
+            {/* Dedicated Greece Destination Page */}
+            <Route
+              path="/painting-holidays-greece"
+              element={<GreecePage onOpenBookModal={handleOpenBookModal} />}
+            />
+            <Route
+              path="/painting-holidays-greece/"
+              element={<GreecePage onOpenBookModal={handleOpenBookModal} />}
+            />
+            <Route
+              path="/greece"
+              element={<GreecePage onOpenBookModal={handleOpenBookModal} />}
+            />
+
+            {/* Dedicated Italy Destination Page */}
+            <Route
+              path="/painting-holidays-italy"
+              element={<ItalyPage onOpenBookModal={handleOpenBookModal} />}
+            />
+            <Route
+              path="/painting-holidays-italy/"
+              element={<ItalyPage onOpenBookModal={handleOpenBookModal} />}
+            />
+            <Route
+              path="/italy"
+              element={<ItalyPage onOpenBookModal={handleOpenBookModal} />}
+            />
+            <Route
+              path="/italy-dolomites"
+              element={<ItalyPage onOpenBookModal={handleOpenBookModal} />}
+            />
+
+            {/* Dedicated Top-Level Calendar Page */}
+            <Route
+              path="/calendar"
+              element={
+                <CalendarPage
+                  onOpenBookModal={handleOpenBookModal}
+                  onOpenDestinationModal={(destId) => {
+                    const found = DESTINATIONS.find(d => d.id === destId);
+                    if (found) setSelectedDestination(found);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/calendar/"
+              element={
+                <CalendarPage
+                  onOpenBookModal={handleOpenBookModal}
+                  onOpenDestinationModal={(destId) => {
+                    const found = DESTINATIONS.find(d => d.id === destId);
+                    if (found) setSelectedDestination(found);
+                  }}
+                />
+              }
             />
 
             {/* Vistas / Departures aliases */}

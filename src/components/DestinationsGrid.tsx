@@ -30,6 +30,14 @@ export const DestinationsGrid: React.FC<DestinationsGridProps> = ({
       navigate('/painting-holidays-scotland');
     } else if (dest.id === 'sri-lanka') {
       navigate('/painting-holidays-sri-lanka');
+    } else if (dest.id === 'morocco') {
+      navigate('/painting-holidays-morocco');
+    } else if (dest.id === 'la-gomera' || dest.id === 'canary-islands') {
+      navigate('/painting-holidays-canary-islands');
+    } else if (dest.id === 'greece') {
+      navigate('/painting-holidays-greece');
+    } else if (dest.id === 'italy-dolomites' || dest.id === 'italy') {
+      navigate('/painting-holidays-italy');
     } else {
       onSelectDestination(dest);
     }

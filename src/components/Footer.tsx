@@ -52,6 +52,21 @@ export const Footer: React.FC = () => {
           <Link to="/painting-holidays-sri-lanka" className="hover:text-[#2c322b] transition-colors">
             Sri Lanka
           </Link>
+          <Link to="/painting-holidays-morocco" className="hover:text-[#2c322b] transition-colors">
+            Morocco
+          </Link>
+          <Link to="/painting-holidays-canary-islands" className="hover:text-[#2c322b] transition-colors">
+            Canary Islands
+          </Link>
+          <Link to="/painting-holidays-greece" className="hover:text-[#2c322b] transition-colors">
+            Greece
+          </Link>
+          <Link to="/painting-holidays-italy" className="hover:text-[#2c322b] transition-colors">
+            Italy
+          </Link>
+          <Link to="/calendar" className="hover:text-[#2c322b] transition-colors">
+            Calendar
+          </Link>
           <button
             onClick={() => handleNav('/#upcoming-trips')}
             className="hover:text-[#2c322b] transition-colors cursor-pointer"

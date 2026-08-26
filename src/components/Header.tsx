@@ -46,10 +46,19 @@ export const Header: React.FC<HeaderProps> = ({
     location.pathname.startsWith('/painting-holidays-scotland') ||
     location.pathname.startsWith('/scotland') ||
     location.pathname.startsWith('/painting-holidays-sri-lanka') ||
-    location.pathname.startsWith('/sri-lanka');
+    location.pathname.startsWith('/sri-lanka') ||
+    location.pathname.startsWith('/painting-holidays-morocco') ||
+    location.pathname.startsWith('/morocco') ||
+    location.pathname.startsWith('/painting-holidays-canary-islands') ||
+    location.pathname.startsWith('/canary-islands') ||
+    location.pathname.startsWith('/la-gomera') ||
+    location.pathname.startsWith('/painting-holidays-greece') ||
+    location.pathname.startsWith('/greece') ||
+    location.pathname.startsWith('/painting-holidays-italy') ||
+    location.pathname.startsWith('/italy');
 
   const navItems = [
-    { id: 'holidays', label: 'Holidays', path: '/#upcoming-trips' },
+    { id: 'calendar', label: 'Calendar', path: '/calendar' },
     { id: 'your-host', label: 'Your Host', path: '/your-host' },
     { id: 'testimonials', label: 'Testimonials', path: '/testimonials' },
     { id: 'blog', label: 'Blog', path: '/blog' },
@@ -77,11 +86,12 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   const isItemActive = (item: typeof navItems[0]) => {
+    if (item.path === '/calendar' && location.pathname.startsWith('/calendar')) return true;
     if (item.path === '/your-host' && location.pathname.startsWith('/your-host')) return true;
     if (item.path === '/testimonials' && location.pathname.startsWith('/testimonials')) return true;
     if (item.path === '/blog' && location.pathname.startsWith('/blog')) return true;
     if (item.path === '/faqs' && location.pathname.startsWith('/faqs')) return true;
-    if (item.path === '/contact' && location.pathname.startsWith('/contact')) return true;
+    if (item.path === '/contact' && (location.pathname.startsWith('/contact') || location.pathname.startsWith('/contact-me'))) return true;
     return false;
   };
 
@@ -186,6 +196,82 @@ export const Header: React.FC<HeaderProps> = ({
                       From £1,280
                     </span>
                   </Link>
+
+                  {/* Morocco Sub-page */}
+                  <Link
+                    to="/painting-holidays-morocco"
+                    onClick={() => setDestDropdownOpen(false)}
+                    className="px-4 py-2.5 hover:bg-[#f4f7f2] flex items-center justify-between group transition-colors"
+                  >
+                    <div>
+                      <div className="font-serif-title font-bold text-sm text-[#1e251c] group-hover:text-[#70826b]">
+                        Morocco
+                      </div>
+                      <div className="text-[11px] text-[#6e786b]">
+                        Atlas, Kasbahs &amp; Sahara dunes (3 trips)
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#eef2ec] text-[#3d4a3a]">
+                      From £1,350
+                    </span>
+                  </Link>
+
+                  {/* Canary Islands Sub-page */}
+                  <Link
+                    to="/painting-holidays-canary-islands"
+                    onClick={() => setDestDropdownOpen(false)}
+                    className="px-4 py-2.5 hover:bg-[#f4f7f2] flex items-center justify-between group transition-colors"
+                  >
+                    <div>
+                      <div className="font-serif-title font-bold text-sm text-[#1e251c] group-hover:text-[#70826b]">
+                        Canary Islands
+                      </div>
+                      <div className="text-[11px] text-[#6e786b]">
+                        La Gomera &amp; La Palma (2 trips)
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#eef2ec] text-[#3d4a3a]">
+                      From £1,200
+                    </span>
+                  </Link>
+
+                  {/* Greece Sub-page */}
+                  <Link
+                    to="/painting-holidays-greece"
+                    onClick={() => setDestDropdownOpen(false)}
+                    className="px-4 py-2.5 hover:bg-[#f4f7f2] flex items-center justify-between group transition-colors"
+                  >
+                    <div>
+                      <div className="font-serif-title font-bold text-sm text-[#1e251c] group-hover:text-[#70826b]">
+                        Greece (Dodecanese)
+                      </div>
+                      <div className="text-[11px] text-[#6e786b]">
+                        Realm of the Nesoi island hop (1 trip)
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#eef2ec] text-[#3d4a3a]">
+                      From £2,600
+                    </span>
+                  </Link>
+
+                  {/* Italy Sub-page */}
+                  <Link
+                    to="/painting-holidays-italy"
+                    onClick={() => setDestDropdownOpen(false)}
+                    className="px-4 py-2.5 hover:bg-[#f4f7f2] flex items-center justify-between group transition-colors"
+                  >
+                    <div>
+                      <div className="font-serif-title font-bold text-sm text-[#1e251c] group-hover:text-[#70826b]">
+                        Italy (Dolomites)
+                      </div>
+                      <div className="text-[11px] text-[#6e786b]">
+                        Enrosadira in Alta Badia (1 trip)
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#eef2ec] text-[#3d4a3a]">
+                      From £2,500
+                    </span>
+                  </Link>
                 </div>
 
                 <div className="py-1">
@@ -270,6 +356,34 @@ export const Header: React.FC<HeaderProps> = ({
                   className="block py-1.5 px-2 rounded hover:bg-[#eef2ec] text-sm text-[#2c322b] font-medium"
                 >
                   🇱🇰 Sri Lanka (3 trips)
+                </Link>
+                <Link
+                  to="/painting-holidays-morocco"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block py-1.5 px-2 rounded hover:bg-[#eef2ec] text-sm text-[#2c322b] font-medium"
+                >
+                  🇲🇦 Morocco (3 trips)
+                </Link>
+                <Link
+                  to="/painting-holidays-canary-islands"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block py-1.5 px-2 rounded hover:bg-[#eef2ec] text-sm text-[#2c322b] font-medium"
+                >
+                  🇮🇨 Canary Islands (2 trips)
+                </Link>
+                <Link
+                  to="/painting-holidays-greece"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block py-1.5 px-2 rounded hover:bg-[#eef2ec] text-sm text-[#2c322b] font-medium"
+                >
+                  🇬🇷 Greece (1 trip)
+                </Link>
+                <Link
+                  to="/painting-holidays-italy"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block py-1.5 px-2 rounded hover:bg-[#eef2ec] text-sm text-[#2c322b] font-medium"
+                >
+                  🇮🇹 Italy (1 trip)
                 </Link>
                 <button
                   onClick={() => handleNavClick('/#destinations')}
